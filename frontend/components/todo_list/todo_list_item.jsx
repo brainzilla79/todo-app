@@ -1,16 +1,12 @@
 import React from 'react';
+import TodoDetailViewContainer from './todo_detail_view_container';
 
 export default class TodoListItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { done: this.props.todo.done };
-    this.handleDelete = this.handleDelete.bind(this);
+    this.state = { done: this.props.todo.done, detail: false };
     this.handleDone = this.handleDone.bind(this);
-  }
-
-  handleDelete(e) {
-    e.preventDefault();
-    this.props.removeTodo(this.props.todo);
+    this.toggleDetailView = this.toggleDetailView.bind(this);
   }
 
   handleDone(e) {
@@ -18,13 +14,17 @@ export default class TodoListItem extends React.Component {
     this.setState({done: !this.state.done });
   }
 
+  toggleDetailView(e) {
+    this.setState({ detail: !this.state.detail});
+  }
+
   render() {
 
     return (
-      <div>
-        <li>{this.props.todo.title}</li>
-        <input type="submit" value="delete" onClick={this.handleDelete}/>
-        <input type="submit" value={this.state.done ? "Undo" : "Done"}  onClick={this.handleDone}/>
+      <div className="todo-list-item">
+        <li><h3 onClick={this.toggleDetailView}>{this.props.todo.title}</h3></li>
+        <input className="done-button" type="submit" value={this.state.done ? "Undo" : "Done"}  onClick={this.handleDone}/>
+        {this.state.detail ? <TodoDetailViewContainer todo={this.props.todo}/> : ""}
       </div>
     );
   }

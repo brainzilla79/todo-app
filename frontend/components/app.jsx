@@ -3,7 +3,7 @@ import TodoListContainer from './todo_list/todo_list_container';
 
 const App = () => (
   <div>
-    <h1> app h1</h1>
+    <h1 className="main-header">Todo List</h1>
     <TodoListContainer/>
   </div>
 );

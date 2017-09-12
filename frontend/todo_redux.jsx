@@ -9,5 +9,5 @@ const store = configureStore(rootReducer);
 window.store = store;
 
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(<Root store={store}/>, document.getElementById('react'));
+  ReactDOM.render(<Root store={store}/>, document.getElementById('main'));
 });
